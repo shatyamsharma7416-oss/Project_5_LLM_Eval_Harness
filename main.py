@@ -10,6 +10,7 @@ from openai import OpenAI
 from test_loader import loader
 from runner import test_output
 from Evaluator import evaluate_score
+from summary import save_summary
 
 load_dotenv()
 console = Console()
@@ -24,12 +25,11 @@ client = OpenAI(
     api_key= os.getenv(model["api"])
 )
 
-def save_response(answers: list):
-    with open(f"results/run_{time.time()}.jsonl", 'a') as f:
+def save_response(answers: list, timestamp: str):
+    with open(f"results/run_{timestamp}.jsonl", 'a') as f:
         for answer in answers:
             f.write(json.dumps(answer) + '\n')
 
-# def save_summary(answers: list):
 
 
 
@@ -43,18 +43,9 @@ def main():
     llm_answer = test_output(cases)
 
     answers_scores = evaluate_score(llm_answer)
-
-    save_response(answers_scores)
-
-
-    # response = client.chat.completions.create(
-    #     model=model["name"],
-    #     messages=[
-    #         {"role": "user", "content": "Hi who are you who made you?"}
-    #     ]
-    # )
-
-    # print(response.choices[0].message.content)
+    timestamp = str(time.time())
+    save_response(answers_scores, timestamp)
+    save_summary(timestamp)
 
 
 if __name__ == "__main__":
