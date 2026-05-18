@@ -1,0 +1,37 @@
+[
+  {
+    "id": "q_001",
+    "input": "What is the capital of France?",
+    "expected": "Paris",
+    "tags": ["factual", "geography"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "q_002",
+    "input": "Summarize this in one sentence: The mitochondria generates ATP through oxidative phosphorylation, powering cellular functions.",
+    "expected": "Mitochondria produce energy for cells through a chemical process.",
+    "tags": ["summarization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "q_003",
+    "input": "If a train travels 60km in 45 minutes, what is its speed in km/h?",
+    "expected": "80 km/h",
+    "tags": ["reasoning", "math"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "q_004",
+    "input": "A bat and a ball are 1.10$. And the bat is 1$ more than the ball. How much is the ball",
+    "expected": "0.5$",
+    "tags": ["reasoning", "math"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "q_005",
+    "input": "US President Donald Trump will arrive in Beijing on Wednesday (May 13) for a state visit that runs through May 15, the first by a sitting US president to China in almost nine years.",
+    "expected": "Us president will arrive Beijing on Wednesday (May 13) for a state visit on May 15",
+    "tags": ["summarization"],
+    "difficulty": "medium"
+  }
+]
