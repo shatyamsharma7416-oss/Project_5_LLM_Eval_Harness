@@ -53,12 +53,12 @@ def test_output(test_cases: list) -> list:
             ],
             response_format={"type": "json_object"}
         )
-        latency = (time.time() - start)
+        latency_ms = (time.time() - start) * 1000
 
         reply = json.loads(response.choices[0].message.content)
         reply = reply['answer']
 
-        answer = {"input": case['input'], "expected": case['expected'], "actual": reply, "latency": latency}
+        answer = {"input": case['input'], "expected": case['expected'], "actual": reply, "latency_ms": latency_ms}
         answers.append(answer)
 
     return answers
