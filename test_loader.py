@@ -29,35 +29,40 @@ class Test_validate(BaseModel):
     difficulty: Difficulty
 
 
-def loader():
-    with open("test_cases.json", 'r') as f:
+def loader(file_location):
+    with open(file_location, 'r') as f:
         test_cases = json.load(f)
 
-    difficulty_levels = questionary.checkbox(
-        "What Question difficulty you want to include?",
-        choices=[
-            "Easy",
-            "Medium",
-            "Hard",
-        ],
-        default="Easy"
-    ).ask()
+    while True:
+        difficulty_levels = questionary.checkbox(
+            "What Question difficulty you want to include?",
+            choices=[
+                "Easy",
+                "Medium",
+                "Hard",
+            ],
+            default="Easy"
+        ).ask()
 
-    tags = questionary.checkbox(
-        "What Question Type you want to include?",
-        choices=[
-            "Factual",
-            "Geography",
-            "Summarization",
-            "Reasoning",
-            "Math"
-        ],
-        default="Factual"
-    ).ask()
+        tags = questionary.checkbox(
+            "What Question Type you want to include?",
+            choices=[
+                "Factual",
+                "Geography",
+                "Summarization",
+                "Reasoning",
+                "Math"
+            ],
+            default="Factual"
+        ).ask()
 
-    difficulty_levels = set(x.lower() for x in difficulty_levels)
-    tags = set(x.lower() for x in tags)
+        difficulty_levels = set(x.lower() for x in difficulty_levels)
+        tags = set(x.lower() for x in tags)
+        print(len(difficulty_levels), len(tags))
 
+        if len(difficulty_levels)>=1 and len(tags)>=1:
+            break
+    
     success, failed = 0,0
     filtered_cases = []
     for case in test_cases:
