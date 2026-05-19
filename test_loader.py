@@ -58,7 +58,6 @@ def loader(file_location):
 
         difficulty_levels = set(x.lower() for x in difficulty_levels)
         tags = set(x.lower() for x in tags)
-        print(len(difficulty_levels), len(tags))
 
         if len(difficulty_levels)>=1 and len(tags)>=1:
             break

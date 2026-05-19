@@ -9,10 +9,12 @@ load_dotenv()
 with open("llm_config.toml", 'rb') as f:
     config = tomllib.load(f)
 
-llm_name = "gemini"
+ACTIVE_MODEL = "gemini"
+model_config = config["models"][ACTIVE_MODEL]
+
 client = OpenAI(
-    base_url= config['models'][llm_name]['url'],
-    api_key= os.getenv(config['models'][llm_name]['api'])
+    base_url=model_config["url"],
+    api_key=os.getenv(model_config['api'])
 )
 
 
@@ -27,7 +29,7 @@ def exact_match(expected: str, actual: str):
 
 
 def semantic_similarity(expected: str, actual: str):
-    from sentence_transformers import SentenceTransformer, util
+    from sentence_transformers import SentenceTransformer, util        # consider moving to module level so it doesn't reload on every call
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
     expected_answer = expected.lower()
@@ -58,7 +60,7 @@ def llm_judge(expected: str, actual: str):
     input2: {actual}
     """
     response = client.chat.completions.create(
-        model=config['models'][llm_name]['name'],
+        model=model_config['name'],
         messages= [
             {"role": "system", "content":sys_prompt},
             {"role": "user", "content": usr_prompt}

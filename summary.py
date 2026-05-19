@@ -35,8 +35,8 @@ def save_summary(timestamp: str):
     summary["by_difficulty"] = json.loads(df_difficulty_score.to_json())['llm_score']
 
     # latency summary
-    df['latency'].mean()
-    summary['latency'] = {"mean_ms": float(df['latency'].mean()), "p95_ms": float(np.percentile(df['latency'], 95))}
+    df['latency_ms'].mean()
+    summary['latency'] = {"mean_ms": float(df['latency_ms'].mean()), "p95_ms": float(np.percentile(df['latency_ms'], 95))}
 
     with open(f"results/summary_{timestamp}.json", 'w') as f:
         json.dump(summary, f, indent=4)

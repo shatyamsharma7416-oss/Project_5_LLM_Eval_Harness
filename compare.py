@@ -19,7 +19,7 @@ baseline_location = pathlib.Path(args.baseline)
 with open(baseline_location, 'r') as f:
     baseline_summary = json.load(f)
 
-new_location = pathlib.Path(args.baseline)
+new_location = pathlib.Path(args.new)
 with open(new_location, 'r') as f:
     new_summary = json.load(f)
 

@@ -58,7 +58,7 @@ def test_output(test_cases: list) -> list:
         reply = json.loads(response.choices[0].message.content)
         reply = reply['answer']
 
-        answer = {"input": case['input'], "expected": case['expected'], "actual": reply, "latency_ms": latency_ms}
+        answer = {"input": case['input'], "expected": case['expected'], "actual": reply, "tags":case['tags'], "difficulty":case["difficulty"], "latency_ms": latency_ms}
         answers.append(answer)
 
     return answers
